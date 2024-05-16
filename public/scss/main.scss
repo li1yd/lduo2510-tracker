@@ -1,2 +1,19 @@
 @import 'layout';
 @import 'typography';
+
+//colour palette 
+$background-light-brown: #c48d65;
+$background-dark-brown: #bc855d;
+$dark-brown: #533b06;
+
+//checkered background
+body{
+    //https://www.reddit.com/r/css/comments/u08pf3/how_to_make_a_checkerboard_using_background/#lightbox
+    background: conic-gradient(
+        $background-dark-brown 90deg,
+        $background-light-brown 90deg 180deg,
+        $background-dark-brown 180deg 270deg,
+        $background-light-brown 270deg
+    );
+    background-size:22.2vw 22.2vw;
+  }
