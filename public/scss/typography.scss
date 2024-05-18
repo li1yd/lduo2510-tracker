@@ -1,10 +1,12 @@
 //---------------------general element styling------------------------
-h1{
+h1, div{
     font-family:pixel1;
     font-weight: normal;
+    color: $dark-brown;
 }
 
 h2{
     font-family:pixel2;
     font-weight: normal; 
+    color: $dark-brown;
 }
