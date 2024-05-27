@@ -1,6 +1,6 @@
 import home from "./scripts/home.js";
-import myDesserts from "./scripts/mydesserts.js";
 import addDesserts from "./scripts/adddesserts.js";
+import myDesserts from "./scripts/mydesserts.js";
 
 //REF: Setting up Single Page Architecture: https://www.youtube.com/watch?v=6BozpmSjk-Y
 const navigateTo = url => {
@@ -15,8 +15,8 @@ const router = async () => {
     const routes = [
 
         {path: "/home", view: home}, // home page
-        {path: "/mydesserts", view: myDesserts},// my desserts page
-        {path: "/adddesserts", view: addDesserts} // add desserts page
+        {path: "/myDesserts", view: myDesserts},// my desserts page
+        {path: "/addDesserts", view: addDesserts} // add desserts page
     ];
 
     // Test each route for potential match
@@ -37,11 +37,13 @@ const router = async () => {
         }
     };
 
-    // Creating new instance of view
-    const view = new match.route.view();
+    const view = new match.route.view(); // Creating new instance of view
 
     // Getting the html from getHTML -> Putting it inside of index.html's "app" element
     document.querySelector("#app").innerHTML = await view.getHtml();
+
+    // Update Pages in Data Entries 
+    view.postRender();
 };
 
 // When navigating through history, rerun the router
@@ -56,5 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
             navigateTo(e.target.href); // Update content of page dynamically, based on target URL
         }
     });
+
     router();
 });

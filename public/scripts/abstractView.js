@@ -1,3 +1,5 @@
+// abstractView provides common functionality for all views in the application 
+
 export default class{
     constructor(){
 

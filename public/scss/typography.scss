@@ -1,12 +1,24 @@
 //---------------------general element styling------------------------
-h1, div{
-    font-family:pixel1;
+$text-color: $dark-brown;
+
+// Apply common styles to headings and divs
+h1, h2, div {
     font-weight: normal;
-    color: $dark-brown;
+    color: $text-color;
 }
 
-h2{
-    font-family:pixel2;
-    font-weight: normal; 
-    color: $dark-brown;
+// Specific styles for h1
+h1 {
+    font-family: pixel1;
+    font-size: x-large;
+}
+
+// Specific styles for h2
+h2 {
+    font-family: pixel2;
+}
+
+// Specific styles for div
+div {
+    font-family: pixel1;
 }

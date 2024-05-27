@@ -1,5 +1,46 @@
-body{
-    p{
-        text-align: left; 
+body{    
+    // Navigation link styling
+    .nav__link{
+        color: $dark-brown;
+        text-decoration: none;
+
+        &:hover{
+            color: $yellow-accent
+        }
+    }
+
+    //------------------------------------------------- DATA ENTRY PAGES -----------------------------------------------------
+
+    // Hide/ Display Data Entry Pages 
+    .page {
+        display: none; // Hide pages by default 
+    }
+
+    .page.active {
+        display: block; // Show the active page 
+    }
+
+    // Styling for Data Entry Containers (Page1, Page2, Page3)
+    #page1, #page2, #page3{
+        background: rgba($dark-brown, 0.3);
+        outline: 5px solid $dark-brown;
+        height: 78vh;
+    }
+
+    // Styling for Input Fields and Buttons
+    #dessertName, #dessertPrice, #recommended, #storeName, #datePurchased,
+    #dessertType, #flavour, #acquisition, #country, #rating,
+    #prevButton, #nextButton { 
+        background-color: transparent;
+        border: none; /* Remove default border */
+        border-bottom: 1px solid #000; /* Add a solid underline */
+        outline: none;
+
+        &::placeholder {
+            color: $dark-brown;
+        }
+
+        &#prevButton, &#nextButton {
+            border-bottom:none;        }
     }
 }

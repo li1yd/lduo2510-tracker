@@ -5,7 +5,8 @@ export default class extends abstractView{
         super();
         this.setTitle("My Desserts");
     }
-
+    
+    // returns displayed HTML content when view is rendered
     async getHtml(){
         return `
             <h1> My Desserts</h1>

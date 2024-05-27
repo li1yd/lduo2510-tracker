@@ -6,6 +6,7 @@ export default class extends abstractView{
         this.setTitle("Home");
     }
 
+    // returns displayed HTML content when view is rendered
     async getHtml(){
         return `
             <h1> Welcome back </h1>
