@@ -3,6 +3,7 @@ body{
     .nav__link{
         color: $dark-brown;
         text-decoration: none;
+        justify-content:space-between;
 
         &:hover{
             color: $yellow-accent
@@ -11,6 +12,33 @@ body{
 
     //------------------------------------------------- DATA ENTRY PAGES -----------------------------------------------------
 
+    form{
+        text-align: center;
+    }
+    
+    main{
+        display: flex;             /* Enable flexbox for the body */
+        flex-direction: column;
+        justify-content: center;   /* Center horizontally */
+        min-height: 80vh;        /* Ensure body fills the viewport height */
+    }
+
+    label{
+        font-size:1.2rem;
+    }
+
+    #display{
+        width: 80%;
+    }
+
+    #table{
+        width:60%;
+    }
+
+    .wrapper {
+        min-height: 80vh;
+    }
+      
     // Hide/ Display Data Entry Pages 
     .page {
         display: none; // Hide pages by default 
@@ -20,27 +48,63 @@ body{
         display: block; // Show the active page 
     }
 
+
     // Styling for Data Entry Containers (Page1, Page2, Page3)
-    #page1, #page2, #page3{
-        background: rgba($dark-brown, 0.3);
+    #dessertFormContainer{
+        background: rgba($dark-brown, 0.25);
         outline: 5px solid $dark-brown;
-        height: 78vh;
+    }
+
+    #price{
+        max-width:10vh;
+        font-size:2vh;
+        border: 0.3vh solid $dark-brown; 
+
+        &::placeholder{
+            color:$placeholder-brown;
+        }
+    }
+
+    // Styling Image Upload Button 
+    #upload-file{
+        color: $dark-brown; 
+        max-width:33vh;
+        font-size:2vh;
+        background-color: $background-dark-brown; 
+        border: 0.3vh solid $dark-brown; 
+
+        &::file-selector-button{
+            color: $dark-brown; 
+            border-right: 0.3vh solid $dark-brown; 
+        }
+    }
+    
+    #prevButton, #nextButton {
+        padding: 10px;
     }
 
     // Styling for Input Fields and Buttons
-    #dessertName, #dessertPrice, #recommended, #storeName, #datePurchased,
+    #dessertName, #accopmaniments, #storeName, #datePurchased,
     #dessertType, #flavour, #acquisition, #country, #rating,
     #prevButton, #nextButton { 
+        max-width:40vh;
         background-color: transparent;
         border: none; /* Remove default border */
-        border-bottom: 1px solid #000; /* Add a solid underline */
         outline: none;
-
+        text-align: center;
+        
         &::placeholder {
-            color: $dark-brown;
+            color: $placeholder-brown;
+            font-size:1.2rem;
+            text-decoration: underline;
         }
 
         &#prevButton, &#nextButton {
-            border-bottom:none;        }
+            color: $dark-brown;
+            font-size:2rem;
+            margin:10px;
+            border-bottom:none;        
+        }
     }
 }
+

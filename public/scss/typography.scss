@@ -1,4 +1,4 @@
-//---------------------general element styling------------------------
+//--------------------- Element styling------------------------
 $text-color: $dark-brown;
 
 // Apply common styles to headings and divs
@@ -10,15 +10,32 @@ h1, h2, div {
 // Specific styles for h1
 h1 {
     font-family: pixel1;
-    font-size: x-large;
+    font-size: 1.5rem;
+    margin-left:55px;
 }
 
 // Specific styles for h2
 h2 {
     font-family: pixel2;
+    font-size:3rem;
+    margin-right:55px;
+}
+
+p{
+    margin-left:55px;
 }
 
 // Specific styles for div
 div {
     font-family: pixel1;
+}
+
+// Data Entry Page 1 Label Styling
+label {
+    font-family: pixel2;
+    margin-bottom: 5px; 
+
+    &[for="dessertName"] { 
+        font-size:2.5rem;
+    }
 }
