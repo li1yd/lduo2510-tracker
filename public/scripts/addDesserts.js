@@ -47,7 +47,7 @@ export default class extends abstractView{
 
                                 <div class="col-sm-5 d-flex flex-column justify-content-center align-items-center">
                                     <label for="dessertImage"> Upload Dessert Image</label>
-                                    <input type="file" id="upload-file" class="form-control mb-2">
+                                    <input type="file" id="uploadFile" class="form-control mb-2">
                                     <label for="recommended">Recommended Accompaniments</label>
                                     <img src="${table}" id="table" alt="Table">
                                     <input type="text" class="input-group" id="accompaniments" placeholder="tea with a dash of honey">
