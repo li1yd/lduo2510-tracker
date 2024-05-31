@@ -29,16 +29,16 @@ export default class extends abstractView{
                     <!-- PAGE 1 DATA ENTRY -->
                     
                     <div id="page1" class="page active">
-                        <form>
+                        <form id="dessertForm">
                             <div class="row">
                                 <div class="col-sm-7 d-flex flex-column justify-content-center align-items-center">
 
                                     <!-- DESSERT NAME -->
                                     <label for="dessertName"> Dessert Name: </label>
-                                    <input type="text" class="input-group mb-3" id="dessertName" name="dessertName" placeholder="chocolate ice cream">
+                                    <input type="text" class="input-group mb-3" id="dessertName" placeholder="chocolate ice cream">
 
                                     <!-- DESSERT PRICE -->
-                                    <input type="number" class="input-group input-group-sm mb-3" id="price" name="price" placeholder="Price">
+                                    <input type="number" class="input-group input-group-sm mb-3" id="price" placeholder="Price">
 
                                     <!-- DESSERT IMAGE -->
                                     <img src="${display}" id="display" alt="Display Case">
@@ -50,7 +50,7 @@ export default class extends abstractView{
                                     <input type="file" id="upload-file" class="form-control mb-2">
                                     <label for="recommended">Recommended Accompaniments</label>
                                     <img src="${table}" id="table" alt="Table">
-                                    <input type="text" class="input-group" id="accopmaniments" name="accompaniments" placeholder="tea with a dash of honey">
+                                    <input type="text" class="input-group" id="accompaniments" placeholder="tea with a dash of honey">
                                 </div>
                             </div>
                         </form>
@@ -59,11 +59,11 @@ export default class extends abstractView{
 
                     <!-- PAGE 2 DATA ENTRY -->
                     <div id="page2" class="page">
-                        <input type="text" id="storeName" name="storeName" placeholder="McDonald's">
-                        <input type="text" id="datePurchased" name="datePurchased" placeholder="Date Purchased">
-                        <input type="text" id="dessertType" name="dessertType" placeholder="Dessert Type">
-                        <input type="text" id="flavour" name="flavour" placeholder="Flavour">
-                        <input type="text" id="acquisition" name="acquisition" placeholder="Acquisition Method">
+                        <input type="text" id="storeName" placeholder="McDonald's">
+                        <input type="text" id="datePurchased" placeholder="Date Purchased">
+                        <input type="text" id="dessertType" placeholder="Dessert Type">
+                        <input type="text" id="flavour" placeholder="Flavour">
+                        <input type="text" id="acquisition" placeholder="Acquisition Method">
                     </div>
 
 
@@ -71,15 +71,20 @@ export default class extends abstractView{
                     <div id="page3" class="page">
                         <input type="text" id="country" name="country" placeholder="Country of Origin">
                         <input type="text" id="rating" name="rating" placeholder="Rating">
-                    </div>                
+                    </div>          
                 </div>        
-
             <button id="nextButton">></button>
             </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <button id="submitButton"> Submit!</button>  
+            </div>
+
             </main>
+
+            
         `;
     }
-
 
     async postRender(){
         this.updatePageDisplay();
@@ -91,13 +96,22 @@ export default class extends abstractView{
         prevButton.addEventListener("click", () => {
                 this.currentPage--;
                 this.updatePageDisplay();
-                // Add logic to save data from the current page (optional)
+                // this.loadDessertData(); //Load data for previous page 
         });
     
         nextButton.addEventListener("click", () => {
                 this.currentPage++;
                 this.updatePageDisplay();
-                // Add logic to save data from the current page (optional)
+                // this.loadDessertData(); //Load data for the next page 
+        });
+
+        const submitButton = document.getElementById("submitButton");
+        submitButton.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevent default form submission
+            this.saveDessertData(); 
+
+            // Display a confirmation message
+            alert("Dessert Data Saved Succesfully!")
         });
     }
 
@@ -118,6 +132,36 @@ export default class extends abstractView{
         // Disable User from accessing >3 or <1 Pages
         document.getElementById("prevButton").disabled = this.currentPage === 1;
         document.getElementById("nextButton").disabled = this.currentPage === 3;
+
+        // Show submit button on Page 3
+        const submitButton = document.getElementById("submitButton");
+        if (submitButton) { // Check if the button exists 
+            submitButton.style.display = this.currentPage === 3 ? "block" : "none";
+        }
+
+    }
+
+    saveDessertData(){
+        // Retrieve existing desserts from localStorage, or initialise an empty array
+        let desserts = JSON.parse(localStorage.getItem("desserts")) || [];
+
+        // Collect data from ALL pages into a single object 
+        const newDessert = {};
+        for(let i = 1; i <=3 ; i ++){
+            const pageId = `page${i}`;
+            const pageData = {};
+            const inputFields = document.querySelectorAll(`#${pageId} input`);
+            inputFields.forEach(field => {
+                pageData[field.id] = field.value;
+            });
+            Object.assign(newDessert, pageData); // Merge page into newDessert
+        }
+
+        // Add the new dessert to the array 
+        desserts.push(newDessert);
+
+        // Save the updated array to localStorage
+        localStorage.setItem("desserts", JSON.stringify(desserts));
     }
 }
 

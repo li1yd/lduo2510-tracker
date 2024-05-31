@@ -29,6 +29,7 @@ body{
 
     #display{
         width: 80%;
+        margin-bottom:20px;
     }
 
     #table{
@@ -84,7 +85,7 @@ body{
     }
 
     // Styling for Input Fields and Buttons
-    #dessertName, #accopmaniments, #storeName, #datePurchased,
+    #dessertName, #accompaniments, #storeName, #datePurchased,
     #dessertType, #flavour, #acquisition, #country, #rating,
     #prevButton, #nextButton { 
         max-width:40vh;

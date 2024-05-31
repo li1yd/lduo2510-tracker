@@ -1,9 +1,9 @@
 @font-face{
     font-family: pixel1;
-    src:url(../src/fonts/Grand9K\ Pixel.ttf);
+    src:url(./src/fonts/Grand9K\ Pixel.ttf);
 }
 
 @font-face{
     font-family: pixel2;
-    src:url(../src/fonts/Pixel\ Gosub.ttf);
+    src:url(./src/fonts/Pixel\ Gosub.ttf);
 }
