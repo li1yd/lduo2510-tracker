@@ -47,7 +47,7 @@ export default class extends abstractView{
 
                                 <div class="col-sm-5 d-flex flex-column justify-content-center align-items-center">
                                     <label for="dessertImage"> Upload Dessert Image</label>
-                                    <input type="file" id="uploadFile" class="form-control mb-2">
+                                    <input type="file" accept="image/*" id="image" class="form-control mb-2">
                                     <label for="recommended">Recommended Accompaniments</label>
                                     <img src="${table}" id="table" alt="Table">
                                     <input type="text" class="input-group" id="accompaniments" placeholder="tea with a dash of honey">
@@ -157,13 +157,34 @@ export default class extends abstractView{
             Object.assign(newDessert, pageData); // Merge page into newDessert
         }
 
-        // Add the new dessert to the array 
-        desserts.push(newDessert);
+        // Handle uploaded image using getBase64
+        const uploadFile = document.getElementById("image");
+        if(uploadFile.files.length > 0){
+            getBase64(uploadFile.files[0], (base64Image) =>{
+                newDessert.image = base64Image;
+                // Add the new dessert to the array 
+                desserts.push(newDessert);
 
-        // Save the updated array to localStorage
-        localStorage.setItem("desserts", JSON.stringify(desserts));
+                // Save the updated array to localStorage
+                localStorage.setItem("desserts", JSON.stringify(desserts));
+        });
+        }else{
+            // No Image Upload
+            desserts.push(newDessert);
+            localStorage.setItem("desserts", JSON.stringify(desserts));
+        }
     }
 }
 
 
+// ---------------------------------- helper functions ------------------------------------------------
 
+// Translates image file into base 64 string 
+function getBase64(file, callback) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        callback(reader.result); 
+        console.log(reader.result); // Debugging
+    });
+    reader.readAsDataURL(file);
+}

@@ -43,7 +43,10 @@ const router = async () => {
     document.querySelector("#app").innerHTML = await view.getHtml();
 
     // Update Pages in Data Entries 
-    view.postRender();
+    // Check if the view has a postRender method before calling it
+    if (view.postRender && typeof view.postRender === 'function') {
+        view.postRender();
+    }
 };
 
 // When navigating through history, rerun the router
