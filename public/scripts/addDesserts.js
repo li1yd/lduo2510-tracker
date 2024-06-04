@@ -6,85 +6,103 @@ export default class extends abstractView{
     constructor(){
         super();
         this.setTitle("Add Desserts");
+        this.currentPage = 1;
     }
 
     // returns displayed HTML content when view is rendered
-    async getHtml(){
-        this.currentPage = 1; 
-
+    async getHtml(){ 
         return ` 
-
         <main>
+
+        ${this.getHeaderHtml()}
+            <div class="d-flex justify-content-between align-items-center">
+
+                <button id="prevButton"><</button>
+                <div id="dessertFormContainer" class="container">
+                    <div id="page1" class="page active">
+                        <form id="dessertForm">
+                            ${this.getPage1Html()}
+                        </form>
+                    </div>
+                    <div id="page2" class="page">${this.getPage2Html()}</div> 
+                    <div id="page3" class="page">${this.getPage3Html()}</div> 
+                </div>
+
+                <button id="nextButton">></button>
+            </div>
+            ${this.getSubmitButtonHtml()}
+
+        </main>`;
+        }
+
+        getHeaderHtml(){
+            return `
             <!-- Title/ Page Numbers --> 
             <header class="d-flex justify-content-between align-items-center"> 
                 <h1> New Entry </h1>
                 <h2 class="text-end"id="pageNumber">${this.currentPage}/3</h2>
             </header>
+            `
+        }
 
-            <!-- NAVIGATION ARROWS -->
-            <div class="d-flex justify-content-between align-items-center">
-                <button id="prevButton"><</button>
+        getPage1Html(){
+            return `
+                <!-- PAGE 1 DATA ENTRY -->
+                    <div class="row">
+                        <div class="col-sm-7 d-flex flex-column justify-content-center align-items-center">
 
-                <div id="dessertFormContainer" class="container">
-                    <!-- PAGE 1 DATA ENTRY -->
-                    
-                    <div id="page1" class="page active">
-                        <form id="dessertForm">
-                            <div class="row">
-                                <div class="col-sm-7 d-flex flex-column justify-content-center align-items-center">
+                            <!-- DESSERT NAME -->
+                            <label for="dessertName"> Dessert Name: </label>
+                            <input type="text" class="input-group mb-3" id="dessertName" placeholder="chocolate ice cream">
 
-                                    <!-- DESSERT NAME -->
-                                    <label for="dessertName"> Dessert Name: </label>
-                                    <input type="text" class="input-group mb-3" id="dessertName" placeholder="chocolate ice cream">
+                            <!-- DESSERT PRICE -->
+                            <input type="number" class="input-group input-group-sm mb-3" id="price" placeholder="Price">
 
-                                    <!-- DESSERT PRICE -->
-                                    <input type="number" class="input-group input-group-sm mb-3" id="price" placeholder="Price">
+                            <!-- DESSERT IMAGE -->
+                            <img src="${display}" id="display" alt="Display Case">
 
-                                    <!-- DESSERT IMAGE -->
-                                    <img src="${display}" id="display" alt="Display Case">
+                        </div>
 
-                                </div>
-
-                                <div class="col-sm-5 d-flex flex-column justify-content-center align-items-center">
-                                    <label for="dessertImage"> Upload Dessert Image</label>
-                                    <input type="file" accept="image/*" id="image" class="form-control mb-2">
-                                    <label for="recommended">Recommended Accompaniments</label>
-                                    <img src="${table}" id="table" alt="Table">
-                                    <input type="text" class="input-group" id="accompaniments" placeholder="tea with a dash of honey">
-                                </div>
-                            </div>
-                        </form>
+                        <div class="col-sm-5 d-flex flex-column justify-content-center align-items-center">
+                            <label for="dessertImage"> Upload Dessert Image</label>
+                            <input type="file" accept="image/*" id="image" class="form-control mb-2">
+                            <label for="recommended">Recommended Accompaniments</label>
+                            <img src="${table}" id="table" alt="Table">
+                            <input type="text" class="input-group" id="accompaniments" placeholder="tea with a dash of honey">
+                        </div>
                     </div>
+            `
+          }
+            
+        getPage2Html(){
+            return `
+            <!-- PAGE 2 DATA ENTRY -->
+            <input type="text" id="storeName" placeholder="Store Name">
+            <input type="text" id="datePurchased" placeholder="Date Purchased">
+            <input type="text" id="dessertType" placeholder="Dessert Type">
+            <input type="text" id="flavour" placeholder="Flavour">
+            <input type="text" id="acquisition" placeholder="Acquisition Method">
+            `
+        }
 
 
-                    <!-- PAGE 2 DATA ENTRY -->
-                    <div id="page2" class="page">
-                        <input type="text" id="storeName" placeholder="McDonald's">
-                        <input type="text" id="datePurchased" placeholder="Date Purchased">
-                        <input type="text" id="dessertType" placeholder="Dessert Type">
-                        <input type="text" id="flavour" placeholder="Flavour">
-                        <input type="text" id="acquisition" placeholder="Acquisition Method">
-                    </div>
+        getPage3Html(){
+            return `
+            <!-- PAGE 3 DATA ENTRY -->
+            <input type="text" id="country" name="country" placeholder="Country of Origin">
+            <input type="text" id="rating" name="rating" placeholder="Rating">        
+            `
+        }
 
 
-                    <!-- PAGE 3 DATA ENTRY -->
-                    <div id="page3" class="page">
-                        <input type="text" id="country" name="country" placeholder="Country of Origin">
-                        <input type="text" id="rating" name="rating" placeholder="Rating">
-                    </div>          
-                </div>        
-            <button id="nextButton">></button>
-            </div>
-
+        getSubmitButtonHtml(){
+            return `
             <div class="d-flex justify-content-center align-items-center">
                 <button id="submitButton"> Submit!</button>  
             </div>
+            `
+        }
 
-            </main>
-
-            
-        `;
-    }
 
     async postRender(){
         this.updatePageDisplay();
@@ -96,13 +114,11 @@ export default class extends abstractView{
         prevButton.addEventListener("click", () => {
                 this.currentPage--;
                 this.updatePageDisplay();
-                // this.loadDessertData(); //Load data for previous page 
         });
     
         nextButton.addEventListener("click", () => {
                 this.currentPage++;
                 this.updatePageDisplay();
-                // this.loadDessertData(); //Load data for the next page 
         });
 
         const submitButton = document.getElementById("submitButton");
