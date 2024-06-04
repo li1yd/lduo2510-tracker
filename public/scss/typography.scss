@@ -30,12 +30,21 @@ div {
     font-family: pixel1;
 }
 
-// Data Entry Page 1 Label Styling
+// Data Entry Pages Label Styling
 label {
     font-family: pixel2;
     margin-bottom: 5px; 
 
     &[for="dessertName"] { 
         font-size:2.5rem;
+    }
+    &[for="storeBought"] { 
+        font-size:1rem;
+    }
+    &[for="delivery"] { 
+        font-size:1rem;
+    }
+    &[for="homemade"] { 
+        font-size:1rem;
     }
 }

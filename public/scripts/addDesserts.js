@@ -6,7 +6,7 @@ export default class extends abstractView{
     constructor(){
         super();
         this.setTitle("Add Desserts");
-        this.currentPage = 1;
+        this.currentPage = 2;
     }
 
     // returns displayed HTML content when view is rendered
@@ -24,6 +24,7 @@ export default class extends abstractView{
                             ${this.getPage1Html()}
                         </form>
                     </div>
+
                     <div id="page2" class="page">${this.getPage2Html()}</div> 
                     <div id="page3" class="page">${this.getPage3Html()}</div> 
                 </div>
@@ -47,41 +48,95 @@ export default class extends abstractView{
 
         getPage1Html(){
             return `
-                <!-- PAGE 1 DATA ENTRY -->
-                    <div class="row">
-                        <div class="col-sm-7 d-flex flex-column justify-content-center align-items-center">
+            <!-- PAGE 1 DATA ENTRY -->
 
-                            <!-- DESSERT NAME -->
-                            <label for="dessertName"> Dessert Name: </label>
-                            <input type="text" class="input-group mb-3" id="dessertName" placeholder="chocolate ice cream">
+            <div class="row">
+                <div class="col-sm-7 d-flex flex-column justify-content-center align-items-center">
 
-                            <!-- DESSERT PRICE -->
-                            <input type="number" class="input-group input-group-sm mb-3" id="price" placeholder="Price">
+                    <!-- DESSERT NAME -->
+                    <label for="dessertName"> Dessert Name: </label>
+                    <input type="text" class="input-group mb-3" id="dessertName" placeholder="chocolate ice cream">
 
-                            <!-- DESSERT IMAGE -->
-                            <img src="${display}" id="display" alt="Display Case">
+                    <!-- DESSERT PRICE -->
+                    <input type="number" class="input-group input-group-sm mb-3" id="price" placeholder="Price">
 
-                        </div>
+                    <!-- DESSERT IMAGE -->
+                    <img src="${display}" id="display" alt="Display Case">
 
-                        <div class="col-sm-5 d-flex flex-column justify-content-center align-items-center">
-                            <label for="dessertImage"> Upload Dessert Image</label>
-                            <input type="file" accept="image/*" id="image" class="form-control mb-2">
-                            <label for="recommended">Recommended Accompaniments</label>
-                            <img src="${table}" id="table" alt="Table">
-                            <input type="text" class="input-group" id="accompaniments" placeholder="tea with a dash of honey">
-                        </div>
-                    </div>
+                </div>
+
+                <div class="col-sm-5 d-flex flex-column justify-content-center align-items-center">
+                    <label for="dessertImage"> Upload Dessert Image</label>
+                    <input type="file" accept="image/*" id="dessertImage" class="form-control mb-2">
+
+                    <label for="accompaniments">Recommended Accompaniments</label>
+                    <img src="${table}" id="table" alt="Table">
+                    <input type="text" class="input-group" id="accompaniments" placeholder="tea with a dash of honey">
+                </div>
+            </div>
             `
           }
             
         getPage2Html(){
             return `
             <!-- PAGE 2 DATA ENTRY -->
-            <input type="text" id="storeName" placeholder="Store Name">
-            <input type="text" id="datePurchased" placeholder="Date Purchased">
-            <input type="text" id="dessertType" placeholder="Dessert Type">
-            <input type="text" id="flavour" placeholder="Flavour">
-            <input type="text" id="acquisition" placeholder="Acquisition Method">
+
+            <div class="row">
+                <div class="col-sm-4 d-flex flex-column justify-content-center align-items-center">
+                    
+                    
+                        <label for="store">Store:</label>
+                        <input type="text" id="store" placeholder="Store Name">
+                    
+
+                    <label for="datePurchased">Date Purchased:</label>
+                    <input type="text" class="form-control datepicker" id="datePurchased" placeholder="[Date]">
+
+                </div>
+
+                <div class="col-sm-3 d-flex flex-column justify-content-center align-items-center">
+                    <label for="dessertType">Dessert Type:</label>
+
+                    <select id="dessertType">
+                        <option value="candies">Candies</option>
+                        <option value="confections">Confections</option>
+                        <option value="baked">Baked Dessert</option>
+                        <option value="frozen">Frozen Dessert</option>
+                        <option value="drink">Dessert Drink</option>
+                        <option value="fried">Fried Dessert</option>
+                        <option value="pudding">Pudding & Custards</option>
+                    </select>
+
+                </div>
+
+                <div class="col-sm-3 d-flex flex-column justify-content-center align-items-center">
+                    <label for="flavour">Flavour:</label>
+                    <input type="text" id="flavour" placeholder="Flavour">
+                </div>
+
+
+                <div class="col-sm-2 d-flex flex-column justify-content-center align-items-center">
+                    <label for="acquisition">Acquisition Method:</label>
+
+                    <div class="radio-option">
+                        <label for="storeBought">Store Bought</label>
+                        <input type="radio" id="storeBought" name="acquisition" value="storeBought">
+                    </div>
+
+                    <div class="radio-option">
+                        <label for="delivery">delivery</label>
+                        <input type="radio" id="delivery" name="acquisition" value="delivery">
+                    </div>
+
+                    <div class="radio-option">
+                        <label for="homemade">homemade</label>
+                        <input type="radio" id="homemade" name="acquisition" value="homemade">
+                    </div>
+
+                    <input type="text" id="acquisition">
+                </div>
+
+            </div>
             `
         }
 
@@ -89,6 +144,7 @@ export default class extends abstractView{
         getPage3Html(){
             return `
             <!-- PAGE 3 DATA ENTRY -->
+
             <input type="text" id="country" name="country" placeholder="Country of Origin">
             <input type="text" id="rating" name="rating" placeholder="Rating">        
             `
@@ -106,6 +162,13 @@ export default class extends abstractView{
 
     async postRender(){
         this.updatePageDisplay();
+
+        // Initialize Bootstrap Datepicker
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd', // Set your desired date format
+            autoclose: true, // Close the datepicker after selection
+            orientation: "bottom"
+        });
 
         const prevButton = document.getElementById("prevButton");
         const nextButton = document.getElementById("nextButton");
@@ -174,7 +237,7 @@ export default class extends abstractView{
         }
 
         // Handle uploaded image using getBase64
-        const uploadFile = document.getElementById("image");
+        const uploadFile = document.getElementById("dessertImage");
         if(uploadFile.files.length > 0){
             getBase64(uploadFile.files[0], (base64Image) =>{
                 newDessert.image = base64Image;

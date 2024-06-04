@@ -12,10 +12,7 @@ body{
 
     //------------------------------------------------- DATA ENTRY PAGES -----------------------------------------------------
 
-    form{
-        text-align: center;
-    }
-    
+
     main{
         display: flex;             /* Enable flexbox for the body */
         flex-direction: column;
@@ -25,6 +22,7 @@ body{
 
     label{
         font-size:1.2rem;
+        text-align: center;
     }
 
     #display{
@@ -34,6 +32,10 @@ body{
 
     #table{
         width:60%;
+    }
+
+    #calendar{
+        width:40%;
     }
 
     .wrapper {
@@ -49,11 +51,14 @@ body{
         display: block; // Show the active page 
     }
 
-
     // Styling for Data Entry Containers (Page1, Page2, Page3)
     #dessertFormContainer{
         background: rgba($dark-brown, 0.25);
         outline: 5px solid $dark-brown;
+
+        .col, .col-sm-7, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2 {  // Or however you decide to divide your columns
+            border: 1px solid $dark-brown;
+          }
     }
 
     #price{
@@ -67,7 +72,7 @@ body{
     }
 
     // Styling Image Upload Button 
-    #image{
+    #dessertImage{
         color: $dark-brown; 
         max-width:33vh;
         font-size:2vh;
@@ -85,7 +90,7 @@ body{
     }
 
     // Styling for Input Fields and Buttons
-    #dessertName, #accompaniments, #storeName, #datePurchased,
+    #dessertName, #accompaniments, #store, #datePurchased,
     #dessertType, #flavour, #acquisition, #country, #rating,
     #prevButton, #nextButton { 
         max-width:40vh;
@@ -93,7 +98,7 @@ body{
         border: none; /* Remove default border */
         outline: none;
         text-align: center;
-        
+
         &::placeholder {
             color: $placeholder-brown;
             font-size:1.2rem;
@@ -106,6 +111,13 @@ body{
             margin:10px;
             border-bottom:none;        
         }
+    }
+
+
+    // Date Input Field
+    .form-control:focus {
+        outline: none; 
+        box-shadow: none;
     }
 }
 
