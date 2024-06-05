@@ -98,13 +98,13 @@ export default class extends abstractView{
                     <label for="dessertType">Dessert Type:</label>
 
                     <select id="dessertType">
-                        <option value="candies">Candies</option>
-                        <option value="confections">Confections</option>
-                        <option value="baked">Baked Dessert</option>
-                        <option value="frozen">Frozen Dessert</option>
-                        <option value="drink">Dessert Drink</option>
-                        <option value="fried">Fried Dessert</option>
-                        <option value="pudding">Pudding & Custards</option>
+                        <option value="Candies">Candies</option>
+                        <option value="Confections">Confections</option>
+                        <option value="Baked">Baked Dessert</option>
+                        <option value="Frozen">Frozen Dessert</option>
+                        <option value="Drink">Dessert Drink</option>
+                        <option value="Fried">Fried Dessert</option>
+                        <option value="Pudding/Custards">Pudding & Custards</option>
                     </select>
 
                 </div>
@@ -115,25 +115,20 @@ export default class extends abstractView{
                 </div>
 
 
-                <div class="col-sm-2 d-flex flex-column justify-content-center align-items-center">
+                <div class="col-sm-2"> 
                     <label for="acquisition">Acquisition Method:</label>
-
-                    <div class="radio-option">
-                        <label for="storeBought">Store Bought</label>
-                        <input type="radio" id="storeBought" name="acquisition" value="storeBought">
+                    <div class="form-check">
+                        <input type="radio" id="storeBought" name="acquisition" value="Store-bought" class="form-check-input">
+                        <label for="storeBought" class="form-check-label">Store-bought</label>
                     </div>
-
-                    <div class="radio-option">
-                        <label for="delivery">delivery</label>
-                        <input type="radio" id="delivery" name="acquisition" value="delivery">
+                    <div class="form-check">
+                        <input type="radio" id="delivery" name="acquisition" value="Delivery" class="form-check-input">
+                        <label for="delivery" class="form-check-label">Delivery</label>
                     </div>
-
-                    <div class="radio-option">
-                        <label for="homemade">homemade</label>
-                        <input type="radio" id="homemade" name="acquisition" value="homemade">
+                    <div class="form-check">
+                        <input type="radio" id="homemade" name="acquisition" value="Home-made" class="form-check-input">
+                        <label for="homemade" class="form-check-label">Home-made</label>
                     </div>
-
-                    <input type="text" id="acquisition">
                 </div>
 
             </div>
@@ -235,6 +230,10 @@ export default class extends abstractView{
             });
             Object.assign(newDessert, pageData); // Merge page into newDessert
         }
+
+        // Get selected dessert type and acquisition method
+        newDessert.dessertType = document.getElementById("dessertType").value;
+        newDessert.acquisition = document.querySelector('input[name="acquisition"]:checked')?.value || "";
 
         // Handle uploaded image using getBase64
         const uploadFile = document.getElementById("dessertImage");

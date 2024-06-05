@@ -43,10 +43,24 @@ export default class extends abstractView{
               
               <div id="collapse${index}" class="accordion-collapse collapse">
                 <div class="accordion-body">
+
+                  <!-- DATA ENTRY FROM PAGES 1 -->
                   <p> Dessert Name: ${dessert.dessertName || ""} </p>
                   <p> Price: ${dessert.price || ""} </p>
                   <p> Accompaniments: ${dessert.accompaniments || ""} </p>
                   ${dessert.image ? `<img src="${dessert.image}" alt="Dessert Image" width="150" />` : ""} 
+
+                  <!-- DATA ENTRY FROM PAGES 2 -->
+                  <p> Store: ${dessert.store ||""}</p>
+                  <p> Date Purchased: ${dessert.datePurchased ||""}</p>
+                  <p> Dessert Type: ${dessert.dessertType ||""}</p>
+                  <p> Flavour: ${dessert.flavour ||""}</p>
+                  <p> Acquisition Method: ${dessert.acquisition ||""}</p>
+
+                  <!-- DATA ENTRY FROM PAGES 3 -->
+                  <p> Country: ${dessert.country ||""}</p>
+                  <p> Rating: ${dessert.rating ||""}</p>
+
                   <button class="remove-button" data-index="${index}">Remove</button> 
                 </div>
               </div>
