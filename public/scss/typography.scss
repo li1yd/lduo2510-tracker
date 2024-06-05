@@ -21,6 +21,7 @@ h2 {
     margin-right:55px;
 }
 
+
 p{
     margin-left:55px;
 }
@@ -31,8 +32,9 @@ div {
 }
 
 // Data Entry Pages Label Styling
-label, legend {
+label, legend, h3 {
     font-family: pixel2;
+    font-size:1.2rem;
     margin-bottom: 5px; 
 
     &[for="dessertName"] { 

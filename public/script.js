@@ -1,6 +1,7 @@
 import home from "./scripts/home.js";
 import addDesserts from "./scripts/adddesserts.js";
 import myDesserts from "./scripts/mydesserts.js";
+import overviewDesserts from "./scripts/overviewdesserts.js"
 
 //REF: Setting up Single Page Architecture: https://www.youtube.com/watch?v=6BozpmSjk-Y
 const navigateTo = url => {
@@ -16,6 +17,7 @@ const router = async () => {
 
         {path: "/home", view: home}, // home page
         {path: "/myDesserts", view: myDesserts},// my desserts page
+        {path: "/myDesserts/overviewDesserts", view: overviewDesserts}, // overview desserts page 
         {path: "/addDesserts", view: addDesserts} // add desserts page
     ];
 

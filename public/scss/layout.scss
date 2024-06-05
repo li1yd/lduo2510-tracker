@@ -56,7 +56,7 @@ body{
         background: rgba($dark-brown, 0.25);
         outline: 5px solid $dark-brown;
 
-        .col, .col-sm-7, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2 {  // Or however you decide to divide your columns
+        .col, .col-sm-7, col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2 {  // Or however you decide to divide your columns
             border: 1px solid $dark-brown;
           }
     }
@@ -91,7 +91,7 @@ body{
 
     // Styling for Input Fields and Buttons
     #dessertName, #accompaniments, #store, #datePurchased,
-    #dessertType, #flavour, #acquisitionLabel, #country, #rating,
+    #dessertType, #flavour, #acquisitionLabel, #country,
     #prevButton, #nextButton { 
         max-width:40vh;
         background-color: transparent;

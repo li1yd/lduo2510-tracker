@@ -122,22 +122,26 @@ export default class extends abstractView{
 
 
                 <div class="col-sm-3 d-flex flex-column justify-content-center align-items-center"> 
-                    <fieldset aria-labelledby="acquisitionLabel">
-                    <legend id="acquisitionLabel">Acquisition Method:</legend>
 
+                    <fieldset aria-labelledby="acquisitionLabel">
+                        <legend id="acquisitionLabel">Acquisition Method:</legend>
+                    
                         <div class="form-check">
                             <input type="radio" id="storeBought" name="acquisition" value="Store-bought" class="form-check-input">
-                            <label for="storeBought" class="form-check-label">Store-bought</label>
+                            <label for="storeBought" class="form-check-label">Store-bought</label> 
                         </div>
+
                         <div class="form-check">
                             <input type="radio" id="delivery" name="acquisition" value="Delivery" class="form-check-input">
                             <label for="delivery" class="form-check-label">Delivery</label>
                         </div>
+
                         <div class="form-check">
                             <input type="radio" id="homemade" name="acquisition" value="Home-made" class="form-check-input">
                             <label for="homemade" class="form-check-label">Home-made</label>
                         </div>
                     </fieldset>
+
                 </div>
             </div>
             `
@@ -146,6 +150,8 @@ export default class extends abstractView{
 
         async getPage3Html(){
             //REFERNCE Countries API: https://canvas.sydney.edu.au/courses/56508/pages/week-5-content?module_item_id=2244487
+
+            // PREVIOUS IMPLEMENTATION Many issues :(
             // const url = "https://restcountries.com/v3.1/all";
             // let countryOptions = '';
           
@@ -172,7 +178,7 @@ export default class extends abstractView{
                     <div class="row"> 
                         <div class="col-sm-6 d-flex flex-column justify-content-center align-items-center">
                             <label for="country">Country of Origin:</label>     
-                                <select id="country" name="country">
+                                <select id="country" name="country" autocomplete="country-name">
                                     <option value="">Select Contry</option>
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Åland Islands">Åland Islands</option>
@@ -422,13 +428,12 @@ export default class extends abstractView{
                         </div>
 
 
-                        <div class="col-sm-6 d-flex flex-column justify-content-center align-items-center">
-                            <label for="rating">Rating:</label>
-
+                        <div class="col-sm-6 d-flex flex-column justify-content-center align-items-center" aria-label="Dessert Rating">
                             <!-- REFERENCE - How to Create Star Rating: 
                             https://www.youtube.com/watch?v=q1xhbc-oKnc -->
 
-                            <div class="stars">
+                            <h3> Rating: </h3>
+                            <div class="stars" aria-label="Dessert Rating">
                                 <i class="fa solid fa-star"></i>
                                 <i class="fa solid fa-star"></i>
                                 <i class="fa solid fa-star"></i>
