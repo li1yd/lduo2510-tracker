@@ -11,19 +11,18 @@ h1, h2, div {
 h1 {
     font-family: pixel1;
     font-size: 1.5rem;
-    margin-left:55px;
+
+    &#newEntryTitle{
+        margin-left:55px;
+    }
 }
+
 
 // Specific styles for h2
 h2 {
     font-family: pixel2;
     font-size:3rem;
-    margin-right:55px;
-}
-
-
-p{
-    margin-left:55px;
+    text-align:center;
 }
 
 // Specific styles for div
@@ -48,5 +47,7 @@ label, legend, h3 {
     }
     &[for="homemade"] { 
         font-size:1rem;
+    }&#dessertEntriesTitle{
+        font-family:pixel1;
     }
 }

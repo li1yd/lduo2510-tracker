@@ -43,7 +43,7 @@ export default class extends abstractView{
             return `
             <!-- Title/ Page Numbers --> 
             <header class="d-flex justify-content-between align-items-center"> 
-                <h1> New Entry </h1>
+                <h1 id=newEntryTitle> New Entry </h1>
                 <h2 class="text-end"id="pageNumber">${this.currentPage}/3</h2>
             </header>
             `
@@ -71,7 +71,7 @@ export default class extends abstractView{
 
                 <div class="col-sm-5 d-flex flex-column justify-content-center align-items-center">
                     <label for="dessertImage"> Upload Dessert Image</label>
-                    <input type="file" accept="image/*" id="dessertImage" class="form-control mb-2">
+                    <input type="file" accept="image/*" id="dessertImage" class="form-control mb-2" required>
 
                     <label for="accompaniments">Recommended Accompaniments</label>
                     <img src="${table}" id="table" alt="Table">
@@ -484,9 +484,6 @@ export default class extends abstractView{
         submitButton.addEventListener("click", (event) => {
             event.preventDefault(); // Prevent default form submission
             this.saveDessertData(); 
-
-            // Display a confirmation message
-            alert("Dessert Data Saved Succesfully!")
         });
 
         // Rating Stars Functionality 
@@ -555,22 +552,31 @@ export default class extends abstractView{
         // Get star rating
         newDessert.rating = calculateStarRating();
 
-        // Handle uploaded image using getBase64
         const uploadFile = document.getElementById("dessertImage");
-        if(uploadFile.files.length > 0){
-            getBase64(uploadFile.files[0], (base64Image) =>{
-                newDessert.image = base64Image;
-                // Add the new dessert to the array 
-                desserts.push(newDessert);
 
-                // Save the updated array to localStorage
-                localStorage.setItem("desserts", JSON.stringify(desserts));
-        });
-        }else{
-            // No Image Upload
-            desserts.push(newDessert);
-            localStorage.setItem("desserts", JSON.stringify(desserts));
+        // Validate image field
+        if (!uploadFile.files || uploadFile.files.length === 0) {
+            alert("Please select a dessert image."); // Or display a more specific error message
+            return; // Stop submission if no image is selected
         }
+    
+        // Check if selected file is actually an image
+        const fileType = uploadFile.files[0].type;
+        if (!fileType.startsWith('image/')) {
+            alert("Please select a valid image file.");
+            return; // Stop submission if the selected file is not an image
+        }
+       
+        // Handle uploaded image using getBase64
+        getBase64(uploadFile.files[0], (base64Image) => {
+            newDessert.image = base64Image;
+    
+            // Add the new dessert to the array 
+            desserts.push(newDessert);
+    
+            // Save the updated array to localStorage
+            localStorage.setItem("desserts", JSON.stringify(desserts));
+        });
     }
 }
 

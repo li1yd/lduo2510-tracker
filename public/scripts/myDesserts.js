@@ -17,57 +17,73 @@ export default class extends abstractView{
         }
     }
 
-    async getHtml() {
-        return `
-          <main>
-            <h1>My Desserts</h1>
-            <div class="accordion" id="dessertAccordion">
-              ${this.generateDessertsHTML()}
-            </div>
-          </main>
-        `;
-      }
-    
-      generateDessertsHTML() {
-        if (this.desserts.length === 0) {
-            console.log("No More")
-          return "<p>No data entries available!</p>";
-        }else{
-            return this.desserts.map((dessert, index) => `
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="heading${index}">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}">
-                  Dessert Name: ${dessert.dessertName} why $${dessert.price}
-                </button>
-              </h2>
-              
-              <div id="collapse${index}" class="accordion-collapse collapse">
-                <div class="accordion-body">
+// ...other parts of the code
 
-                  <!-- DATA ENTRY FROM PAGES 1 -->
-                  <p> Dessert Name: ${dessert.dessertName || ""} </p>
-                  <p> Price: ${dessert.price || ""} </p>
-                  <p> Accompaniments: ${dessert.accompaniments || ""} </p>
-                  ${dessert.image ? `<img src="${dessert.image}" alt="Dessert Image" width="150" />` : ""} 
-
-                  <!-- DATA ENTRY FROM PAGES 2 -->
-                  <p> Store: ${dessert.store ||""}</p>
-                  <p> Date Purchased: ${dessert.datePurchased ||""}</p>
-                  <p> Dessert Type: ${dessert.dessertType ||""}</p>
-                  <p> Flavour: ${dessert.flavour ||""}</p>
-                  <p> Acquisition Method: ${dessert.acquisition ||""}</p>
-
-                  <!-- DATA ENTRY FROM PAGES 3 -->
-                  <p> Country: ${dessert.country ||""}</p>
-                  <p> Rating: ${dessert.rating ||""}</p>
-
-                  <button class="remove-button" data-index="${index}">Remove</button> 
-                </div>
+async getHtml() {
+  return `
+  <main>
+    <h1>My Desserts</h1>
+      <div id="dessertEntryContainer" class="container">
+        <div class="row"> 
+          <div class="col-sm-12">
+            <h2> Your Menu </h2>
+              <p> Desserts </p>
+              <p> Welcome to your tracked desserts page. Here, you can review all the delicious desserts you've indulged in previously. </p>
+              <p> You can also check out your desserts overview below :P! </p>   
+              <div class="button-container"> 
+                  <a href="/myDesserts/overviewDesserts" id="overviewButton" class="nav__link" data-link>Desserts Overview</a> 
               </div>
-            </div>
-          `).join('');
-        }
-      }
+          </div>
+
+
+          <!-- ACCORDION ITEMS --> 
+          <h3 id="dessertEntriesTitle"> Your Dessert Entries </h3>
+          <div class="accordion" id="dessertAccordion">
+            ${this.generateDessertsHTML()}
+          </div>
+
+        </div>
+      </div>
+  </main>
+  `;
+}
+
+generateDessertsHTML() {
+  if (this.desserts.length === 0) {
+      return `
+      <div class="row d-flex flex-column justify-content-center align-items-center">
+          <p>No data entries available!</p>
+      </div>
+      `;
+  } else {
+      return this.desserts.map((dessert, index) => `
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-heading${index}">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}">
+            <span class="priceDisplay">$${dessert.price}</span>
+            ${dessert.image ? `<img src="${dessert.image}" alt="Dessert Image" width="150" />` : ""}
+            Dessert Name: ${dessert.dessertName}   
+          </button>
+        </h2>
+
+        <div id="collapse${index}" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <p> Accompaniments: ${dessert.accompaniments || ""} </p>
+              <p> Store: ${dessert.store ||""}</p>
+              <p> Date Purchased: ${dessert.datePurchased ||""}</p>
+              <p> Dessert Type: ${dessert.dessertType ||""}</p>
+              <p> Flavour: ${dessert.flavour ||""}</p>
+              <p> Acquisition Method: ${dessert.acquisition ||""}</p>
+              <p> Country: ${dessert.country ||""}</p>
+              <p> Rating: ${dessert.rating ||""}</p>
+              <button class="remove-button" data-index="${index}">Remove</button> 
+          </div>
+      </div>
+    </div>
+  `).join('');
+  }
+}
+
 
       async postRender() {
         const removeButtons = document.querySelectorAll('.remove-button');
