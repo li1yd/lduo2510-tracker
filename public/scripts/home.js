@@ -1,4 +1,5 @@
 import abstractView from "./abstractView.js";
+import logo from '../src/images/logo.png';
 
 export default class extends abstractView{
     constructor(){
@@ -9,8 +10,13 @@ export default class extends abstractView{
     // returns displayed HTML content when view is rendered
     async getHtml(){
         return `
-            <h1> Welcome back </h1>
-            <p> A web application to track your sweet palate - documented with desserts from around the world!  </p>
+        <div id="homeContainer" class="container">
+            <div class="row">
+                <img src="${logo}" alt="Logo" class="img-fluid" id="logo">
+                <p id="homeParagraph"> A web application to track your sweet palate! <br> Begin by clicking ‘+’ 
+                to add a new Dessert Entry. Then, view them in My Desserts!  </p>
+            </div>
+        </div>
         `;
     }
 }
