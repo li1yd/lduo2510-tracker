@@ -10,7 +10,6 @@ export default class extends abstractView{
         const storedDesserts = JSON.parse(localStorage.getItem("desserts")) || [];
 
         // Data Aggregations
-
         // 1. Total Desserts
         const totalDesserts = storedDesserts.length;
 
@@ -46,6 +45,8 @@ export default class extends abstractView{
 
         // Display Results in HTML
         return `
+            <a href="/myDesserts" class="nav__link" data-link id="backButton">< My Desserts</a> </div>
+
             <h1>Overview Desserts</h1>
             <p>Total Number of Desserts Tracked: ${totalDesserts}</p>
             <p>Total Spending on Desserts: $${totalSpending}</p>
@@ -53,7 +54,6 @@ export default class extends abstractView{
             <p>Unique Stores Visited: ${uniqueStores}</p>
             <p>Most Common Flavour:  ${mostCommonFlavour}</p>
             <p>Countries Sampled: ${countriesSampled}</p>
-
         `; 
     }
 }

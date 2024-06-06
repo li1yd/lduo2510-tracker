@@ -21,19 +21,17 @@
 
 <body>
     <!--Single Page Architecture Root-->
-    <div  id="root">
-
-        <!--Navigation for SPA-->
+    <div id="root">
         <nav class="container">
-            <a href="/home" class="nav__link" data-link> x </a>
-            <a href="/myDesserts" class="nav__link" data-link> My Desserts </a>
-            <a href="/addDesserts" class="nav__link" data-link> + </a>
-            <a href="/myDesserts/overviewDesserts" class="nav__link" data-link>Overview</a>
+            <a href="/home" class="nav__link" data-link id="homeLink"> x </a>
+            <a href="/myDesserts" class="nav__link" data-link id="myDessertsLink"> My Desserts </a>
+            <a href="/addDesserts" class="nav__link" data-link id="addDessertsLink"> + </a>
+            <a href="/myDesserts/overviewDesserts" class="nav__link" data-link id="overviewDessertsLink">Overview</a>
         </nav>
-
         <!--HTML is contained in scripts-->
         <div id="app" class="container"></div>
-
+    </div>
+    
     <!-- Front-end/ Client-side entry point -->
     <script type="module" src="./script.js"> </script>
 

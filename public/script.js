@@ -49,6 +49,13 @@ const router = async () => {
     if (view.postRender && typeof view.postRender === 'function') {
         view.postRender();
     }
+
+    // Manage Link Visibility Based on Current Path
+    const path = location.pathname;
+    document.getElementById("homeLink").style.display = path === "/home" ? "none" : "block";
+    document.getElementById("myDessertsLink").style.display = (path === "/home" ) ? "block" : "none";
+    document.getElementById("addDessertsLink").style.display = path === "/home" ? "block" : "none";
+    document.getElementById("overviewDessertsLink").style.display = path === "/myDesserts" ? "block" : "none";
 };
 
 // When navigating through history, rerun the router
@@ -64,5 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    if (location.pathname === "/") {
+        navigateTo("/home"); // Redirect to the home page
+    }
+    
     router();
 });

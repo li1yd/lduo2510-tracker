@@ -1,13 +1,26 @@
 body{    
     // Navigation link styling
+    nav {
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping to the next line if needed */
+        justify-content: space-between; /* Create space between the columns */
+    }
+
     .nav__link{
         color: $dark-brown;
         text-decoration: none;
         justify-content:space-between;
-
         &:hover{
             color: $yellow-accent
         }
+    }
+
+    #homeLink{
+        margin-left: auto; 
+    }
+
+    #overviewDessertsLink {
+        position: absolute; /* Position the link absolutely */
     }
 
     //------------------------------------------------- DATA ENTRY PAGES -----------------------------------------------------
@@ -92,7 +105,7 @@ body{
     // Styling for Input Fields and Buttons
     #dessertName, #accompaniments, #store, #datePurchased,
     #dessertType, #flavour, #acquisitionLabel, #country,
-    #prevButton, #nextButton { 
+    #prevButton, #prevButton2, #nextButton { 
         max-width:40vh;
         background-color: transparent;
         border: none; /* Remove default border */
