@@ -1,6 +1,6 @@
 body{    
     // Navigation link styling
-    nav {
+    #mainNav {
         display: flex;
         flex-wrap: wrap; // Wrap to next line
         justify-content: space-between;
@@ -34,7 +34,8 @@ body{
     //------------------------------------------------- HOME PAGE STYLING -------------------------------------------------------
     
     #logo{
-        width:70%;
+        min-width:60%;
+        max-width:70%;
     }
     
     #homeContainer {
@@ -50,12 +51,9 @@ body{
         }
       }
 
-
-    #homeParagraph{
-        max-width:80%;
-    }
     //--------------------------------------- ADD DESSERTS (DATA ENTRY PAGES) STYLING ------------------------------------------
 
+    // COLUMNS OUTLINE
     .col, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2 { 
         border: 1px solid $dark-brown;
     }
@@ -70,6 +68,11 @@ body{
     label, legend{
         font-size:1.2rem;
         text-align: center;
+    }
+
+    #pageNumber{
+        margin-right:50px;
+        font-size:4rem;
     }
 
     #display, #table, #calendar {
@@ -130,7 +133,7 @@ body{
     // Styling for Input Fields and Buttons
     #dessertName, #accompaniments, #store, #datePurchased,
     #dessertType, #flavour, #acquisitionLabel, #country,
-    #prevButton, #prevButton2, #nextButton { 
+    #prevButton, #nextButton { 
         max-width:40vh;
         background-color: transparent;
         border: none; /* Remove default border */
@@ -174,12 +177,14 @@ body{
         padding:20px;
     }
 
+    #myDessertsParagraph{
+        padding:10px;
+    }
     // Styling for Data Entry Containers (Page1, Page2, Page3)
     #dessertEntryContainer {
-        background: rgba($dark-brown, 0.25);
+        background: #7950338a;
         outline: 0.5vh solid $dark-brown; 
         padding: 20px;
-        min-height:70vh;
 
         // Align elements in center 
         .row{
@@ -188,11 +193,19 @@ body{
             margin-left: 0;
             margin-right: 0;
         }
+
         .col-sm-12 {  // Target the Bootstrap column class directly
-            padding:10px;
+            padding:20px;
             outline: 0.5vh solid $dark-brown; 
-            background-color: #dfb08e;
-        }
+
+            &:first-child{
+                background-color: #ce87548a;
+            }
+
+            &:last-child{
+                background-color: #e6af887a;
+            }
+        }   
       }
       
     p{
@@ -234,9 +247,7 @@ body{
     .accordion-item {
         display: flex;
         flex-direction: column;
-        min-width:250px;
-        max-width:250px;
-        min-height: 250px;
+        width:200px;
         border: 0.3vh solid black;
         margin-bottom: 15px;
         border-radius: none;
@@ -244,12 +255,12 @@ body{
     
         // Restore Missing Top Border - Override Bootstrap
         &:not(:first-child) {
-            border-top: 0.3vh solid black; /* Match your existing border style */
+            border-top: 0.3vh solid black; 
         }
 
         // Cascade Accordion Overview elements downwards 
         .accordion-button {
-            min-height: 250px;
+            min-height: 200px;
             background-color: #fff; 
             color: $dark-brown;
             display: flex; 
@@ -266,17 +277,17 @@ body{
             }
         }
 
-        .accordion-body p{
-            text-align: left;
-        }
-
         // Style the image
         img {
             width: 100%; 
-            margin-bottom: 10px;
-            object-fit: cover; 
-          }
-        
+            height:108px;
+            object-fit: contain;
+        }
+
+        .accordion-body p{
+            text-align: left;
+            font-size:1rem;
+        }
           // Style the Price
           .priceDisplay { 
             font-weight: bold;
@@ -284,4 +295,60 @@ body{
           }
       }
 
+    //------------------------------------------- OVERVIEW STYLING  -----------------------------------------------
+    #backButton{
+        margin-left:-40px;
     }
+
+    #tipContainer{
+        padding:20px;
+    }
+    
+    .notebook {
+        display: flex;
+        align-items: center; 
+        background-color: #f5f5f5;
+        position: relative;   
+        border: 0.5vh solid black; 
+        padding: 60px;  
+        min-height:45vh;
+    }
+    
+    .spine {
+        position: absolute; 
+        top: 0;
+        left: -20px; 
+        z-index: 1; 
+    }
+    
+    .glide__slide {
+        background-color: white;
+        border: 0.3vh solid black; 
+        padding: 20px;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;  
+        align-items: center;
+        text-align: center;
+
+        #flavourText { 
+            font-size: 2rem;
+            margin-bottom: 10px; 
+        }
+
+        span {
+            font-size: 3rem;
+            display: inline-flex;   /* Use inline-flex for horizontal centering */
+            align-items: center;     /* Vertically center content within the span */
+            margin-bottom: 10px;  
+        }
+
+        p {
+            font-family: pixel2;
+            font-size: 1.2rem; 
+            line-height: 1.4; 
+        }
+}
+
+}

@@ -3,14 +3,14 @@ $text-color: $dark-brown;
 
 // Apply common styles to headings and divs
 h1, h2, div {
-    font-weight: normal;
     color: $text-color;
 }
 
 // Specific styles for h1
 h1 {
     font-family: pixel1;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-bottom:30px;
 
     &#newEntryTitle{
         margin-left:55px;
@@ -22,6 +22,10 @@ h1 {
 h2 {
     font-family: pixel2;
     font-size:3rem;
+    text-align:center;
+}
+
+h3{
     text-align:center;
 }
 

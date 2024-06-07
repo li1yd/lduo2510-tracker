@@ -502,8 +502,6 @@ export default class extends abstractView{
 
     // Update the Data Entry Page when user clicks 'Next'
     updatePageDisplay() {
-        // Debugging to ensure that it runs 
-        console.log("updatePageDisplay called with currentPage:", this.currentPage);
         const pages = document.querySelectorAll("#dessertFormContainer .page");
 
         // Update Respective Pages
@@ -588,7 +586,6 @@ function getBase64(file, callback) {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
         callback(reader.result); 
-        console.log(reader.result); // Debugging
     });
     reader.readAsDataURL(file);
 }

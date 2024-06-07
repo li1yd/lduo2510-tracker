@@ -22,26 +22,31 @@ export default class extends abstractView{
 async getHtml() {
   return `
   <main>
-    <h1>My Desserts</h1>
-      <div id="dessertEntryContainer" class="container">
+      <h1>My Desserts</h1>
+
+      <div id="dessertEntryContainer" class="container mb-5">
         <div class="row"> 
-          <div class="col-sm-12">
-            <h2> Your Menu </h2>
-              <p> Desserts </p>
-              <p> Welcome to your tracked desserts page. Here, you can review all the delicious desserts you've indulged in previously. </p>
-              <p> You can also check out your desserts overview below :P! </p>   
-              <div class="button-container"> 
-                  <a href="/myDesserts/overviewDesserts" id="overviewButton" class="nav__link" data-link>Desserts Overview</a> 
-              </div>
+          <div class="col-sm-12 mb-4">
+            <h2> 🥞 🍰 🍦 </h2>
+            <h2 class="p-2"> Your Menu </h2>
+              <h3> - Desserts - </h3>
+              <p id="myDessertsParagraph">  Review all the delicious desserts you've logged, and indulged in previously! </p>
           </div>
 
 
           <!-- ACCORDION ITEMS --> 
-          <h3 id="dessertEntriesTitle"> Your Dessert Entries </h3>
-          <div class="accordion" id="dessertAccordion">
-            ${this.generateDessertsHTML()}
-          </div>
+          <div class="col-sm-12">
+            <h4 id="dessertEntriesTitle"> Your Dessert Entries </h4>
 
+            <div class="button-container"> 
+              <a href="/myDesserts/overviewDesserts" id="overviewButton" class="nav__link" data-link> Dessert Dashboard 📝</a> 
+            </div>
+            
+            <div class="accordion" id="dessertAccordion">
+              ${this.generateDessertsHTML()}
+            </div>
+
+          </div>
         </div>
       </div>
   </main>
@@ -52,7 +57,7 @@ generateDessertsHTML() {
   if (this.desserts.length === 0) {
       return `
       <div class="row d-flex flex-column justify-content-center align-items-center">
-          <p>No data entries available!</p>
+          <p>Hmm, looks like your dessert log is a little hungry.  Time to feed it some sweet memories!</p>
       </div>
       `;
   } else {
@@ -98,7 +103,7 @@ generateDessertsHTML() {
       
             // Check if empty and update message
             if (accordion.children.length === 0) {
-              accordion.innerHTML = "<p>No data entries available!</p>";
+              accordion.innerHTML = "<p>No data entries available! </p>";
             }
       
             // Update the desserts array and local storage
@@ -107,6 +112,7 @@ generateDessertsHTML() {
             localStorage.setItem("desserts", JSON.stringify(this.desserts));
           });
         });
+        
     }
 }
 
