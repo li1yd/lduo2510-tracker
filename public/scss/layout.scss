@@ -22,6 +22,12 @@ body{
         }
     }
 
+    @media (max-width: 767.98px) {
+        .nav__link{
+            padding:0px;
+        }
+    }
+
     #homeLink{
         margin-left: auto; 
     }
@@ -30,12 +36,11 @@ body{
         position: absolute;
     }
 
-
     //------------------------------------------------- HOME PAGE STYLING -------------------------------------------------------
     
     #logo{
-        min-width:60%;
-        max-width:70%;
+        min-width:400px;
+        max-width:600px;
     }
     
     #homeContainer {
@@ -53,9 +58,12 @@ body{
 
     //--------------------------------------- ADD DESSERTS (DATA ENTRY PAGES) STYLING ------------------------------------------
 
-    // COLUMNS OUTLINE
-    .col, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2 { 
-        border: 1px solid $dark-brown;
+    //COLUMNS OUTLINE
+    @media (max-width: 767.98px) {
+        .col, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2 {
+            padding:10px;
+            border: 2px solid $dark-brown;
+        }
     }
 
     main{
@@ -75,19 +83,12 @@ body{
         font-size:4rem;
     }
 
-    #display, #table, #calendar {
-        // Use relative units for responsiveness
-        width: 80%; 
-        margin-bottom: 20px;
-      }
-    
-      #table { width: 60%; }
-      #calendar { width: 40%; }
-    
-      .wrapper { min-height: 80vh; }
-    
-      // Page Hide/Show (Consider using classes instead of IDs)
-      .page { 
+    #calendar { width: 40%; padding:10px;}
+    #table { width: 60%; }
+    #display { width: 80%; }
+      
+      // Page Hide/Show 
+    .page { 
         display: none; 
         &.active { display: block; }
     }
@@ -132,9 +133,9 @@ body{
 
     // Styling for Input Fields and Buttons
     #dessertName, #accompaniments, #store, #datePurchased,
-    #dessertType, #flavour, #acquisitionLabel, #country,
+    #dessertType, #flavour, #country,
     #prevButton, #nextButton { 
-        max-width:40vh;
+        max-width:30vh;
         background-color: transparent;
         border: none; /* Remove default border */
         outline: none;
@@ -153,11 +154,47 @@ body{
             border-bottom:none;        
         }
     }
+    
+
+    #storeContainer {
+        display: flex;
+        flex-direction: column; 
+        background-image: url('../src/images/sign.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center; 
+        padding:10px;
+
+        label, input {
+            width: 100%;  
+        }
+    }
+
+    // CHANGING IMAGES
+    #dessertTypeImages {
+        img {
+            display: none; // Hide images by default
+            max-height:120px;
+            padding:10px;
+        }
+
+        &:first-child {
+            display: block; // Show first image
+        }
+
+    }
 
     #prevButton, #nextButton {
         padding: 10px;
     }
 
+    #submitButtonContainer{
+        padding:30px;
+    }
+
+    #submitButton{
+        border: 0.3vh solid $dark-brown;
+    }
     // Stars Rating 'Field'
     .stars {
         i { // Nested inside .stars
@@ -171,6 +208,26 @@ body{
         }
     }
 
+    #confirmSubmit{
+        background-color: $pink-accent;
+        border: none; 
+        &:hover{
+            background-color: $dark-pink-accent;
+        }
+    }
+    
+    .modal {
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
+    }
+    
+    .modal-title {
+        font-weight: bold;
+    }
+      
+    .modal-body {
+        padding: 20px;
+    }
+    
     //------------------------------------------- MY DESSERTS STYLING  -----------------------------------------------
 
     #dessertEntriesTitle{
