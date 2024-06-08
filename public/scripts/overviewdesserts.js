@@ -10,48 +10,12 @@ export default class extends abstractView{
         const storedDesserts = JSON.parse(localStorage.getItem("desserts")) || [];
 
         // Data Aggregations
-        // 1. Total Desserts
-        const totalDesserts = storedDesserts.length;
-
-        // 2. Total Spending, REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-        const totalSpending = storedDesserts.reduce((sum, dessert) => {
-            const price = Number(dessert.price);
-            return isNaN(price) ? sum : sum + price; // Skip if price is invalid
-        }, 0);
-
-        // 3. Average Price of Desserts 
-        const averagePrice = storedDesserts.length === 0
-        ? 0
-        : (totalSpending/storedDesserts.length).toFixed(2);
-
-        // 4. Unique Stores Visited - Set: Option of unique values, no duplicates
-        const uniqueStores = new Set(
-            storedDesserts
-                .filter(dessert => dessert.store && dessert.store.trim() !== "") // Filter out empty or whitespace-only store values
-                .map(dessert => dessert.store)
-        ).size;
-
-        // 5. Common Flavour Profile
-        const flavourCounts = {};
-        storedDesserts.forEach(dessert => {
-            flavourCounts[dessert.flavour] = (flavourCounts[dessert.flavour] || 0) + 1;
-        });
-
-        // Find the most common flavour or set to "None" if no flavors
-        const mostCommonFlavour = Object.keys(flavourCounts).length > 0 
-            ? Object.keys(flavourCounts).reduce((a, b) => flavourCounts[a] > flavourCounts[b] ? a : b) 
-            : "N/A";
-
-        // 6. Different Countires Sampled 
-        const countriesSampled = new Set(
-            storedDesserts
-                .filter(dessert => dessert.country) // Keep only desserts with a country
-                .map(dessert => dessert.country.toLowerCase()) // Normalise to lowercase
-        ).size;
-
-        console.log("Unique Stores Visisted", uniqueStores)
-
-
+        const totalDesserts = this.calculateTotalDesserts(storedDesserts);
+        const totalSpending = this.calculateTotalSpending(storedDesserts);
+        const averagePrice = this.calculateAveragePrice(totalSpending, totalDesserts);
+        const uniqueStores = this.calculateUniqueStores(storedDesserts);
+        const mostCommonFlavour = this.calculateMostCommonFlavour(storedDesserts);
+        const countriesSampled = this.calculateCountriesSampled(storedDesserts);
         // Display Results in HTML
         return `
         <nav>
@@ -61,7 +25,6 @@ export default class extends abstractView{
         <main>
             <h1>Dessert Dashboard</h1>
             <div class="notebook">
-
                 <div class="spine">
                     <svg width="43" height="457" viewBox="0 0 43 457" fill="none">
                         <path d="M 0 53.5 H 43 M 0 103.5 H 43 M 0 153.5 H 43 M 0 203.5 H 43 M 0 
@@ -89,7 +52,7 @@ export default class extends abstractView{
     async postRender() {
         const glideOptions = {
             type: 'carousel',
-            perView: 4,
+            perView: 4.5,
             gap: 20,
             breakpoints: {
                 768: {
@@ -98,6 +61,58 @@ export default class extends abstractView{
             },
             autoplay: 3000
         };
-        const glide = new Glide('.glide', glideOptions).mount();
+        new Glide('.glide', glideOptions).mount();
+    }
+
+    // 1. Total Desserts - return length of array
+    calculateTotalDesserts(desserts) {
+        return desserts.length;
+    }
+
+    // 2. Total Spending REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+    calculateTotalSpending(desserts) {
+        return desserts.reduce((sum, dessert) => {
+            const price = Number(dessert.price);
+            return isNaN(price) ? sum : sum + price;
+        }, 0);
+    }
+
+    // 3. Average Price of Desserts 
+    calculateAveragePrice(totalSpending, totalDesserts) {
+        return totalDesserts === 0 ? 0 : (totalSpending / totalDesserts).toFixed(2);
+    }
+
+    // 4. Unique Stores Visited - Set: Option of unique values, no duplicates
+    calculateUniqueStores(desserts) {
+        const uniqueStores = new Set(
+            desserts
+                .filter(dessert => dessert.store && dessert.store.trim() !== "")
+                .map(dessert => dessert.store)
+        );
+        return uniqueStores.size;
+    }
+
+    // 5. Common Flavour Profile
+    calculateMostCommonFlavour(desserts) {
+        const flavourCounts = {};
+        desserts.forEach(dessert => {
+            if (dessert.flavour) {
+                flavourCounts[dessert.flavour] = (flavourCounts[dessert.flavour] || 0) + 1;
+            }
+        });
+
+        return Object.keys(flavourCounts).length > 0
+            ? Object.keys(flavourCounts).reduce((a, b) => flavourCounts[a] > flavourCounts[b] ? a : b)
+            : "N/A";
+    }
+
+     // 6. Different Countires Sampled 
+    calculateCountriesSampled(desserts) {
+        const countriesSampled = new Set(
+            desserts
+                .filter(dessert => dessert.country)
+                .map(dessert => dessert.country.toLowerCase())
+        );
+        return countriesSampled.size;
     }
 }

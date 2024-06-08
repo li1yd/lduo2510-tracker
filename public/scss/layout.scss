@@ -37,7 +37,12 @@ body{
     }
 
     //------------------------------------------------- HOME PAGE STYLING -------------------------------------------------------
-    
+    @media (max-width: 767.98px) {
+        #homeContainer p{
+            font-size:1rem;
+        }
+    }
+
     #logo{
         min-width:400px;
         max-width:600px;
@@ -58,12 +63,15 @@ body{
 
     //--------------------------------------- ADD DESSERTS (DATA ENTRY PAGES) STYLING ------------------------------------------
 
-    //COLUMNS OUTLINE
-    @media (max-width: 767.98px) {
-        .col, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2 {
-            padding:10px;
-            border: 2px solid $dark-brown;
-        }
+    // Page Hide/Show 
+    .page { 
+        display: none; 
+        &.active { display: block; }
+    }
+
+    #pageNumber{
+        margin-right:50px;
+        font-size:4rem;
     }
 
     main{
@@ -73,62 +81,11 @@ body{
         min-height: 70vh; 
     }
 
-    label, legend{
-        font-size:1.2rem;
-        text-align: center;
-    }
-
-    #pageNumber{
-        margin-right:50px;
-        font-size:4rem;
-    }
-
-    #calendar { width: 40%; padding:10px;}
-    #table { width: 60%; }
-    #display { width: 80%; }
-      
-      // Page Hide/Show 
-    .page { 
-        display: none; 
-        &.active { display: block; }
-    }
-    
-
     // Styling for Data Entry Containers (Page1, Page2, Page3)
     #dessertFormContainer{
         background: rgba($dark-brown, 0.25);
         outline: 5px solid $dark-brown;
         padding:20px;
-    }
-
-    #price{
-        max-width:10vh;
-        font-size:2vh;
-        border: 0.3vh solid $dark-brown; 
-
-        &::placeholder{
-            color:$placeholder-brown;
-        }
-    }
-
-    // Styling Image Upload Button 
-    #dessertImage{
-        color: $dark-brown; 
-        max-width:33vh;
-        font-size:2vh;
-        background-color: $background-dark-brown; 
-        border: 0.3vh solid $dark-brown; 
-
-        &::file-selector-button{
-            color: $dark-brown; 
-            border-right: 0.3vh solid $dark-brown; 
-        }
-    }
-
-    // Date Input Field
-    .form-control:focus {
-        outline: none; 
-        box-shadow: none;
     }
 
     // Styling for Input Fields and Buttons
@@ -154,8 +111,47 @@ body{
             border-bottom:none;        
         }
     }
-    
 
+    // Date Input Field
+    .form-control:focus {
+        outline: none; 
+        box-shadow: none;
+    }
+
+    label, legend{
+        font-size:1.2rem;
+        text-align: center;
+    }
+
+    #calendar { height:130px; padding:10px;}
+    #table { width: 60%; }
+    #display { width: 80%; }
+      
+
+    #price{
+        max-width:10vh;
+        font-size:2vh;
+        border: 0.3vh solid $dark-brown; 
+
+        &::placeholder{
+            color:$placeholder-brown;
+        }
+    }
+
+    // Styling Image Upload Button 
+    #dessertImage{
+        color: $dark-brown; 
+        max-width:33vh;
+        font-size:2vh;
+        background-color: $background-dark-brown; 
+        border: 0.3vh solid $dark-brown; 
+
+        &::file-selector-button{
+            color: $dark-brown; 
+            border-right: 0.3vh solid $dark-brown; 
+        }
+    }
+        
     #storeContainer {
         display: flex;
         flex-direction: column; 
@@ -181,7 +177,19 @@ body{
         &:first-child {
             display: block; // Show first image
         }
+    }
 
+    // Stars Rating 'Field'
+    .stars {
+        i { // Nested inside .stars
+            color: $dark-brown;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        
+            &.active { 
+            color: $yellow-accent;
+            }
+        }
     }
 
     #prevButton, #nextButton {
@@ -194,18 +202,6 @@ body{
 
     #submitButton{
         border: 0.3vh solid $dark-brown;
-    }
-    // Stars Rating 'Field'
-    .stars {
-        i { // Nested inside .stars
-          color: $dark-brown;
-          cursor: pointer;
-          transition: color 0.2s ease;
-      
-          &.active { 
-            color: $yellow-accent;
-            }
-        }
     }
 
     #confirmSubmit{
@@ -228,15 +224,24 @@ body{
         padding: 20px;
     }
     
+    //COLUMNS OUTLINE for mobile
+    @media (max-width: 767.98px) {
+        .col, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2 {
+            padding:10px;
+            border: 2px solid $dark-brown;
+        }
+
+        #pageNumber{
+            font-size:2rem;
+        }
+
+        h1{
+            font-size:1.5rem;
+        }
+    }
+
     //------------------------------------------- MY DESSERTS STYLING  -----------------------------------------------
 
-    #dessertEntriesTitle{
-        padding:20px;
-    }
-
-    #myDessertsParagraph{
-        padding:10px;
-    }
     // Styling for Data Entry Containers (Page1, Page2, Page3)
     #dessertEntryContainer {
         background: #7950338a;
@@ -251,18 +256,21 @@ body{
             margin-right: 0;
         }
 
-        .col-sm-12 {  // Target the Bootstrap column class directly
-            padding:20px;
-            outline: 0.5vh solid $dark-brown; 
-
-            &:first-child{
-                background-color: #ce87548a;
-            }
-
-            &:last-child{
-                background-color: #e6af887a;
-            }
-        }   
+        // Style two main sections
+        .col-sm-12 {
+            padding: 20px;
+            outline: 0.5vh solid $dark-brown;
+        }
+        
+        // Style the first section (Your Menu)
+        #yourMenu {
+            background-color: #ce87548a; 
+        }
+        
+        // Style the second section (Dessert Entries)
+        #dessertEntries {
+            background-color: #e6af887a; 
+        }
       }
       
     p{
@@ -270,7 +278,22 @@ body{
         font-size:1.2rem
     }
 
-    #overviewButton {  /* Use the ID selector */
+    #dessertEntriesTitle{
+        padding:20px;
+    }
+
+    #myDessertsParagraph{
+        padding:10px;
+    }
+
+
+    .button-container { 
+        display: flex;
+        justify-content: center; 
+        align-items: center;   
+    }
+
+    #overviewButton {  
         padding: 10px 20px;
         background-color:$pink-accent; 
         color: $dark-brown;
@@ -279,19 +302,13 @@ body{
         cursor: pointer;
         transition: background-color 0.3s ease;
       }
-
-    .button-container { /* Add a container for the button */
-        display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center;    /* Center vertically (if needed) */
-      }
       
       #overviewButton:hover {
         background-color: $dark-pink-accent;
       }
       
 
-      // ------------- ACCORDION STYLING -----------------------
+      // --------------------- ACCORDION STYLING -----------------------
       #dessertAccordion {
         display: flex;
         flex-wrap: wrap; 
@@ -353,12 +370,14 @@ body{
       }
 
     //------------------------------------------- OVERVIEW STYLING  -----------------------------------------------
-    #backButton{
-        margin-left:-40px;
+    @media (max-width: 767.98px) {
+        #backButton{
+            padding:40px;
+        }
     }
 
-    #tipContainer{
-        padding:20px;
+    #backButton{
+        margin-left:-40px;
     }
     
     .notebook {
@@ -406,6 +425,6 @@ body{
             font-size: 1.2rem; 
             line-height: 1.4; 
         }
-}
+    }
 
 }
