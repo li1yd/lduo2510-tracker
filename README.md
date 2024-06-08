@@ -10,7 +10,7 @@ This dessert-tracking application is designed to provide users with a platform t
 
 3.	**My Desserts:** This page displays a list of all logged dessert entries in a stylised 'dessert menu' format. Users can add more to the list, or remove entries!
 
-4.  **Overview:** The overview dashboard presents users with a summarised view of their dessert consumption, with insights such as total desserts tracked, average spending, etc.
+4.  **Overview/ Dessert Dashboard:** The overview dashboard presents users with a summarised view of their dessert consumption, with insights such as total desserts tracked, average spending, etc.
 
 # 2. Configuration & Deployment 
 ### Prerequisites
@@ -96,7 +96,7 @@ For how my desserts would be displayed, I initially wanted to have a 'card' - an
 
 I also adjusted the layout from two columns to two rows. This change optimizes screen space as more entries are added and better accommodates the expansion of accordion elements.
 
-<img src="public/src/readmeimages/mydessertswireframe.png" width="330"><img src="public/src/readmeimages/mydessertsprototype.png" width="400" >
+<img src="public/src/readmeimages/mydessertswireframe.png" width="330"><img src="public/src/readmeimages/mydessertsprototype.png" width="390">
 
 ### 2. Desserts Overview Page 
 Initially, I wanted to display the aggregated data statically, however I wanted to add more interactivity to my application, so I opted to include an interactive carousel of aggregated data to make it more engaging!

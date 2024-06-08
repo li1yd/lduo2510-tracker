@@ -15,7 +15,7 @@ export default class extends abstractView{
                 <img src="${logo}" alt="Logo" id="logo">
                 <body>
                     <p> A web application to track your sweet palate! Begin by clicking ‘+’ 
-                    to add a new Dessert Entry. Then, view them in My Desserts! </p>
+                    to add a new Dessert Entry. Then, view them in My Desserts!  </p>
                 </body>
             </div>
         </div>
