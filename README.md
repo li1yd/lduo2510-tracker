@@ -94,7 +94,7 @@ For the solution I identified and removed the conflciting `display:flex` on the 
 ### 1. My Desserts Page 
 For how my desserts would be displayed, I initially wanted to have a 'card' - and have it expand when clicked on. However I found that using Bootstraps Accordions was the most efficient manner of executing this in the allocated timeframe, while still having a functional layout.
 
-I also adjusted the layout from two columns to two rows. This change optimizes screen space as more entries are added and better accommodates the expansion of accordion elements.
+I also adjusted the layout from two columns to two rows. This layout better accommodates the expansion of accordion elements.
 
 <img src="public/src/readmeimages/mydessertswireframe.png" width="330"><img src="public/src/readmeimages/mydessertsprototype.png" width="390">
 
